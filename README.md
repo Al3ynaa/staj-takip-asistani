@@ -1,5 +1,5 @@
 # Staj Takip Asistanı
-
+> Frontend (React) kodu için: [staj-takip-frontend](https://github.com/Al3ynaa/staj-takip-frontend)
 Staj başvurularını takip etmek, yönetmek ve yapay zeka desteğiyle, ilana özel ön yazı üretmek için geliştirilmiş, tam kapsamlı bir web uygulaması.
 
 ## Özellikler
