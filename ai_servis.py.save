@@ -1,0 +1,17 @@
+import os
+from dotenv import load_dotenv
+from anthropic import Anthropic
+
+load_dotenv()
+client = Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
+
+
+def on_yazi_uret(ilan_metni: str,profil_bilgisi:str)->str:
+	mesaj=client.messages.create(
+	model="claude-sonnet-4-5",
+	max_token=500,
+	messages=[
+            {"role": "user", "content": f"Benim hakkımda: {profil_bilgisi}\n\nAşağıdaki iş ilanına uygun, kısa ve profesyonel bir ön yazı taslağı yaz:\n\n{ilan_metni}"}
+        ]
+)
+return mesaj.content[0].text

@@ -1,0 +1,24 @@
+services:
+  db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: staj_kullanici
+      POSTGRES_PASSWORD: staj_sifre
+      POSTGRES_DB: staj_db
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U staj_kullanici -d staj_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://staj_kullanici:staj_sifre@db:5432/staj_db
+    depends_on:
+      db:
+        condition: service_healthy
